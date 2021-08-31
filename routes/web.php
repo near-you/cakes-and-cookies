@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware(['auth'])->group(function () {
+    /*Route::prefix('products')->group(function () {
+        Route::get('/{category_id?}', [Product::class, 'index'])->name('products')->whereNumber("category_id");
+        Route::post('/add', [Product::class, 'add'])->name('products.add');
+    });
+
+    Route::prefix('cart')->group(function () {
+        Route::get('/', [Cart::class, 'index'])->name('cart');
+        Route::post('/add', [Cart::class, 'add'])->name('cart.add');
+        Route::post('/update', [Cart::class, 'update'])->name('cart.update');
+    });*/
+
+    Route::resource('admin_category', AdminCategory::class)->middleware('admin.check:admin');
 });
 
 Auth::routes();

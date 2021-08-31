@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLastnameRoleShopIdToUsersTable extends Migration
+class AddLastNameRoleShopIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class AddLastnameRoleShopIdToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('last_name')->after('name');
-            $table->string('role')->after('last_name');
-            $table->bigInteger('shop_id')->after('password');
+            $table->enum('role', ['admin', 'manager'])->default('manager')->after('last_name');
+            $table->bigInteger('shop_id')->nullable()->after('password');
         });
     }
 

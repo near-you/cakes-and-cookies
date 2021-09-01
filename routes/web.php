@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCategory;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,11 @@ Route::middleware(['auth'])->group(function () {
     });*/
 
     Route::resource('admin_category', AdminCategory::class)->middleware('admin.check:admin');
+
+    Route::resource('admin', UserController::class)->middleware('admin.check:admin');
+
 });
+
 
 Auth::routes();
 

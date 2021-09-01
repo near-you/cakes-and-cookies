@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\Shop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 
@@ -24,7 +25,8 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->productName(),
-            'description' => $this->faker->text(100)
+            'description' => $this->faker->text(100),
+            'shop_id' => Shop::inRandomOrder()->value('id'),
         ];
     }
 }

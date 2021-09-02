@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.index', [
-            "users" => User::all()
+        return view('manager.index', [
+            "products" => Product::all()
         ]);
     }
 

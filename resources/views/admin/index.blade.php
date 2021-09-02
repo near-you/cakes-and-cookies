@@ -128,7 +128,7 @@
 
 @endsection
 
-@section('js')
+{{--@section('js')
     <script>
         $(function () {
             $('#example2').DataTable({
@@ -141,4 +141,4 @@
             });
         });
     </script>
-@endsection
+@endsection--}}

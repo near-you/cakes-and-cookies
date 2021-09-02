@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminCategory;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,13 +33,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update', [Cart::class, 'update'])->name('cart.update');
     });*/
 
-    Route::resource('admin_category', AdminCategory::class)->middleware('admin.check:admin');
+//    Route::resource('admin_category', AdminCategory::class)->middleware('admin.check:admin');
 
-    Route::resource('admin', UserController::class)->middleware('admin.check:admin');
+    Route::resource('admin', AdminController::class)->middleware('admin.check:admin');
+
+    Route::resource('manager', ManagerController::class);
 
 });
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

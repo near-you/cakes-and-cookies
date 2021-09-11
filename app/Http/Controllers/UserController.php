@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Http\Requests\UserAddRequest;
+use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class ManagerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,19 +18,25 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        return view('manager.index', [
-            "products" => Product::all()
+
+        return view('admin.user.index', [
+            "users" => User::paginate(6)
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
-        //
+        return view('admin.user.create',
+            [
+                'users' => User::all(),
+                'shops' => Shop::all()
+            ]
+        );
     }
 
     /**
@@ -34,9 +45,18 @@ class ManagerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserAddRequest $request)
     {
-        //
+
+
+
+        $user = User::create(
+            User::createUser($request)
+        );
+        return redirect()->route('admin')->with(
+            'status',
+            'User ' . $user->name . ' was created!'
+        );
     }
 
     /**
@@ -45,7 +65,7 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -56,7 +76,7 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -68,7 +88,7 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -79,8 +99,11 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        User::destroy($id);
+        return redirect()->route('admin.user.index')->with(
+            'status',
+            'Category #' . $id . ' was deleted!');
     }
 }

@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -247,77 +247,72 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Managers',
+            'icon'    => 'fas fa-user-cog',
+            'can'    => 'admin',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'View All Managers',
+                    'icon'    => 'fas fa-users',
+                    'url'  => 'admin/user',
+                ],
+                [
+                    'text' => 'Add Manager',
+                    'icon'    => 'fas fa-user-plus',
+                    'url'  => 'admin/user/create',
+                ]
+            ]
+        ],
+        [
+            'text'    => 'Shops',
+            'icon'    => 'fas fa-user-cog',
+            'can'    => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'View All Shops',
+                    'icon'    => 'fas fa-store',
+                    'url'  => 'admin/shop',
+                ],
+                [
+                    'text' => 'Add Shop',
+                    'icon'    => 'fas fa-plus-square',
+                    'url'  => '#',
+                ]
+            ]
+        ],
+        [
+            'text'    => 'Products',
+            'icon'    => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'View All Products',
+                    'icon'    => 'fas fa-boxes',
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+                    'text' => 'Add Product',
+                    'icon'    => 'fas fa-user-plus',
+                    'url'  => '#',
+                ]
+            ]
+        ],
+        [
+            'text'    => 'Orders',
+            'icon'    => 'fas fa-user-cog',
+            'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'View All Orders',
+                    'icon'    => 'fas fa-users',
                     'url'  => '#',
                 ],
-            ],
+                [
+                    'text' => 'Add Order',
+                    'icon'    => 'fas fa-user-plus',
+                    'url'  => '#',
+                ]
+            ]
         ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+
     ],
 
     /*

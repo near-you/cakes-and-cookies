@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminCategory;
-use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Manager\ManagerController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,22 +23,19 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    /*Route::prefix('products')->group(function () {
-        Route::get('/{category_id?}', [Product::class, 'index'])->name('products')->whereNumber("category_id");
-        Route::post('/add', [Product::class, 'add'])->name('products.add');
+
+    Route::middleware('admin.check:admin')->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('/', [AdminController::class, 'index'])->name('admin');
+            Route::resource('/user', UserController::class);
+            Route::resource('/shop', ShopController::class);
+        });
     });
 
-    Route::prefix('cart')->group(function () {
-        Route::get('/', [Cart::class, 'index'])->name('cart');
-        Route::post('/add', [Cart::class, 'add'])->name('cart.add');
-        Route::post('/update', [Cart::class, 'update'])->name('cart.update');
-    });*/
-
-//    Route::resource('admin_category', AdminCategory::class)->middleware('admin.check:admin');
-
-    Route::resource('admin', AdminController::class)->middleware('admin.check:admin');
-
-    Route::resource('manager', ManagerController::class);
+    Route::prefix('manager')->group(function () {
+        Route::get('/', [ManagerController::class, 'index'])->name('manager');
+        Route::resource('/shop', ShopController::class);
+    });
 
 });
 

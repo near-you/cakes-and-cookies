@@ -33,7 +33,6 @@ class UserController extends Controller
     {
         return view('admin.user.create',
             [
-                'users' => User::all(),
                 'shops' => Shop::all()
             ]
         );
@@ -47,13 +46,9 @@ class UserController extends Controller
      */
     public function store(UserAddRequest $request)
     {
+        $user = User::createUser($request);
 
-
-
-        $user = User::create(
-            User::createUser($request)
-        );
-        return redirect()->route('admin')->with(
+        return redirect()->route('user.index')->with(
             'status',
             'User ' . $user->name . ' was created!'
         );

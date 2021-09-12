@@ -3,6 +3,17 @@
 @section('content')
 
     <div class="card-body pb-0">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row d-flex align-items-stretch">
             @foreach( $users as $user )
                 <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
@@ -26,7 +37,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="/storage/products_img/{{ $user->img }}" alt="" class="img-circle img-fluid">
+                                    <img src="../storage/user_img/{{ $user->img }}" alt="" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -42,9 +53,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-5 text-center">
+                    <img src="../storage/user_img/{{ $user->img }}" alt="" class="img-circle img-fluid">
+                </div>
+
             @endforeach
         </div>
     </div>
+
 
     <!-- /.card-body -->
     <div class="card-footer">

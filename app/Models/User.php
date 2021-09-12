@@ -66,6 +66,6 @@ class User extends Authenticatable
         $data['img'] = $imgName;
         $data['role'] = lcfirst($request->role);
         $data['password'] = Hash::make($request->password);
-        return $data;
+        return User::create($data);
     }
 }

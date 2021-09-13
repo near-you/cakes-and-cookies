@@ -37,7 +37,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="../storage/user_img/{{ $user->img }}" alt="" class="img-circle img-fluid">
+                                    <img src="{{ Illuminate\Support\Facades\Storage::url('user_img/thumbnail/'.$user->img) }}" alt="" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -53,10 +53,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5 text-center">
-                    <img src="../storage/user_img/{{ $user->img }}" alt="" class="img-circle img-fluid">
-                </div>
-
             @endforeach
         </div>
     </div>

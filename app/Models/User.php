@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -56,13 +58,21 @@ class User extends Authenticatable
 
     public static function createUser($request)
     {
+        $data = $request->all();
+
         if ($files = $request->file('img')) {
             $imgName =  Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
-            $files->storeAs(
+            /*$files->storeAs(
                 'public/user_img', $imgName
-            );
+            );*/
+
+            $data['img']->move(Storage::path('public/user_img/') . 'origin/',$imgName);
+
+            $thumbnail = Image::make(Storage::path('public/user_img/') . 'origin/'.$imgName);
+            $thumbnail->fit(128, 128);
+            $thumbnail->save(Storage::path('public/user_img/').'thumbnail/'.$imgName);
         }
-        $data = $request->all();
+
         $data['img'] = $imgName;
         $data['role'] = lcfirst($request->role);
         $data['password'] = Hash::make($request->password);

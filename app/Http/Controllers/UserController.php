@@ -6,9 +6,6 @@ use App\Http\Requests\UserAddRequest;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Pagination;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -18,7 +15,6 @@ class UserController extends Controller
      */
     public function index()
     {
-
         return view('admin.user.index', [
             "users" => User::paginate(6)
         ]);
@@ -73,7 +69,10 @@ class UserController extends Controller
      */
     public function edit(int $id)
     {
-        //
+        return view('admin.user.edit', [
+            "shops" => Shop::find($id),
+            "users" => User::all()
+        ]);
     }
 
     /**

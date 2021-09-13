@@ -38,7 +38,6 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(UserAddRequest $request)
     {
@@ -58,20 +57,19 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        //
+        dd(11111111);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
     {
         return view('admin.user.edit', [
-            "shops" => Shop::find($id),
-            "users" => User::all()
+            "user" => User::query()->find($id),
+            "shops" => Shop::all()
         ]);
     }
 
@@ -80,24 +78,22 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
-        //
+        dd($request);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy(int $id)
     {
         User::destroy($id);
-        return redirect()->route('admin.user.index')->with(
+        return redirect()->route('user.index')->with(
             'status',
-            'Category #' . $id . ' was deleted!');
+            'User #' . $id . ' was deleted!');
     }
 }

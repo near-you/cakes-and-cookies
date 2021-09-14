@@ -93,20 +93,26 @@ class User extends Authenticatable
 
     public static function imgDestroy(int $id)
     {
-
+        if(User::find($id)->img) {
             if (file_exists(Storage::path('public/user_img/') . 'origin/' . User::find($id)->img)) {
                 unlink(Storage::path('public/user_img/') . 'origin/' . User::find($id)->img);
             }
             if (file_exists(Storage::path('public/user_img/') . 'thumbnail/' . User::find($id)->img)) {
                 unlink(Storage::path('public/user_img/') . 'thumbnail/' . User::find($id)->img);
             }
+        }
     }
 
     public static function userDestroy(int $id)
     {
-        if(User::find($id)->img) {
-            self::imgDestroy($id);
-        }
+        self::imgDestroy($id);
         User::destroy($id);
+    }
+
+    public static function redirectView($id)
+    {
+        redirect()->route('user.index')->with(
+            'status',
+            'User #' . $id. ' was deleted!');
     }
 }

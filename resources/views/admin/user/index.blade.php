@@ -59,13 +59,13 @@
                                 <a href="#" class="btn btn-sm bg-teal">
                                     <i class="fas fa-comments"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-primary">
+                                <a href="{{ route('user.show', ["user" => $user->id]) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                                 <div class="btn-group">
-                                    <div class="btn-sm  btn-info">Action</div>
-                                    <button type="button" class="btn btn-info btn-sm  dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
+                                    {{--<div class="btn-sm  btn-info">Action</div>--}}
+                                    <button type="button" class="btn btn-info btn-sm  dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">Action
+{{--                                        <span class="sr-only">Toggle Dropdown</span>--}}
                                     </button>
                                     <div class="dropdown-menu" role="menu">
                                         <a class="btn btn-block btn-sm" href="{{ route('user.edit', ["user" => $user->id]) }}">Edit Profile</a>

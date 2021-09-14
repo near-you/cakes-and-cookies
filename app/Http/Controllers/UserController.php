@@ -14,7 +14,6 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      */
     public function index()
     {
@@ -25,8 +24,6 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     *
      */
     public function create()
     {
@@ -39,7 +36,6 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      */
     public function store(UserAddRequest $request): \Illuminate\Http\RedirectResponse
     {
@@ -53,18 +49,16 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param int $id
      */
     public function show(int $id)
     {
-        dd(11111111);
+        return view('admin.user.show', [
+            "user" => User::find($id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param int $id
      */
     public function edit(int $id)
     {
@@ -76,7 +70,6 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      */
     public function update(UserEditRequest $request, int $id)
     {
@@ -90,7 +83,6 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      */
     public function destroy(int $id): \Illuminate\Http\RedirectResponse
     {

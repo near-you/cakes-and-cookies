@@ -116,7 +116,7 @@
                             <label for="exampleInputCategory">Shop</label>
                             <select name="shop_id" id="exampleInputShop"
                                     class="form-control @error('shop_id') is-invalid @enderror">
-                                <option>Please select Shop</option>
+                                <option value="0">Please select Shop</option>
                                 @foreach($shops as $shop)
                                     <option
                                         @if((old('shop_id') && old('shop_id') == $shop->id) || $shop->id == $user->shop_id) selected

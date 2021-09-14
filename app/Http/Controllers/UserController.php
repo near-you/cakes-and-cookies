@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserAddRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -37,9 +40,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      */
-    public function store(UserAddRequest $request)
+    public function store(UserAddRequest $request): \Illuminate\Http\RedirectResponse
     {
         $user = User::createUser($request);
 
@@ -52,8 +54,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
      */
     public function show(int $id)
     {
@@ -63,7 +64,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      */
     public function edit(int $id)
     {
@@ -76,24 +77,28 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      */
-    public function update(Request $request, int $id)
+    public function update(UserEditRequest $request, int $id)
     {
-        dd($request);
+        User::updateUser($id, $request);
+        $name = User::find($id)->name;
+        return redirect()->route('user.index')->with(
+            'status',
+            'User ' . $name . ' was updated!'
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      */
-    public function destroy(int $id)
+    public function destroy(int $id): \Illuminate\Http\RedirectResponse
     {
-        User::destroy($id);
+        $name = User::find($id)->name;
+        User::userDestroy($id);
+
         return redirect()->route('user.index')->with(
             'status',
-            'User #' . $id . ' was deleted!');
+            'User ' . $name . ' was deleted!');
     }
 }

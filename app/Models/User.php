@@ -61,21 +61,52 @@ class User extends Authenticatable
         $data = $request->all();
 
         if ($files = $request->file('img')) {
-            $imgName =  Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
-            /*$files->storeAs(
-                'public/user_img', $imgName
-            );*/
-
-            $data['img']->move(Storage::path('public/user_img/') . 'origin/',$imgName);
-
-            $thumbnail = Image::make(Storage::path('public/user_img/') . 'origin/'.$imgName);
+            $imgName = Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
+            $data['img']->move(Storage::path('public/user_img/') . 'origin/', $imgName);
+            $thumbnail = Image::make(Storage::path('public/user_img/') . 'origin/' . $imgName);
             $thumbnail->fit(128, 128);
-            $thumbnail->save(Storage::path('public/user_img/').'thumbnail/'.$imgName);
+            $thumbnail->save(Storage::path('public/user_img/') . 'thumbnail/' . $imgName);
         }
 
         $data['img'] = $imgName;
         $data['role'] = lcfirst($request->role);
         $data['password'] = Hash::make($request->password);
         return User::create($data);
+    }
+
+    public static function updateUser(int $id, $request)
+    {
+        $data = $request->except(['_token', '_method', 'password_confirmation']);
+        if ($files = $request->file('img')) {
+            self::imgDestroy($id);
+            $imgName = Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
+            $data['img']->move(Storage::path('public/user_img/') . 'origin/', $imgName);
+            $thumbnail = Image::make(Storage::path('public/user_img/') . 'origin/' . $imgName);
+            $thumbnail->fit(128, 128);
+            $thumbnail->save(Storage::path('public/user_img/') . 'thumbnail/' . $imgName);
+            $data['img'] = $imgName;
+        }
+
+        return User::where('id', $id)
+            ->update($data);
+    }
+
+    public static function imgDestroy(int $id)
+    {
+
+            if (file_exists(Storage::path('public/user_img/') . 'origin/' . User::find($id)->img)) {
+                unlink(Storage::path('public/user_img/') . 'origin/' . User::find($id)->img);
+            }
+            if (file_exists(Storage::path('public/user_img/') . 'thumbnail/' . User::find($id)->img)) {
+                unlink(Storage::path('public/user_img/') . 'thumbnail/' . User::find($id)->img);
+            }
+    }
+
+    public static function userDestroy(int $id)
+    {
+        if(User::find($id)->img) {
+            self::imgDestroy($id);
+        }
+        User::destroy($id);
     }
 }

@@ -19,4 +19,10 @@ class Shop extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public static function updateData(int $id, string $name)
+    {
+        return Shop::where('id', $id)
+            ->update(['name' => $name]);
+    }
 }

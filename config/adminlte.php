@@ -276,7 +276,7 @@ return [
                 [
                     'text' => 'Add Shop',
                     'icon'    => 'fas fa-plus-square',
-                    'url'  => '#',
+                    'url'  => 'admin/shop/create',
                 ]
             ]
         ],

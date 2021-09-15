@@ -77,6 +77,13 @@
         <!-- /.col -->
     </div>
 
+    <div class="card-footer">
+        <div class="pagination justify-content-center m-0">
+            {{ $shops->links() }}
+        </div>
+    </div>
+    <!-- /.card-footer -->
+
 @endsection
 
 @section('js')

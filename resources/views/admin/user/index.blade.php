@@ -17,7 +17,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Contacts</li>
+                        <li class="breadcrumb-item active">All Users/li>
                     </ol>
                 </div>
             </div>
@@ -59,20 +59,22 @@
                                 <a href="#" class="btn btn-sm bg-teal">
                                     <i class="fas fa-comments"></i>
                                 </a>
-                                <a href="{{ route('user.show', ["user" => $user->id]) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('user.show', ["user" => $user->id]) }}"
+                                   class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                                 <div class="btn-group">
-                                    {{--<div class="btn-sm  btn-info">Action</div>--}}
-                                    <button type="button" class="btn btn-info btn-sm  dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">Action
-{{--                                        <span class="sr-only">Toggle Dropdown</span>--}}
+                                    <button type="button" class="btn btn-info btn-sm  dropdown-toggle dropdown-icon"
+                                            data-toggle="dropdown" aria-expanded="false">Action
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                        <a class="btn btn-block btn-sm" href="{{ route('user.edit', ["user" => $user->id]) }}">Edit Profile</a>
+                                        <a class="btn btn-block btn-sm"
+                                           href="{{ route('user.edit', ["user" => $user->id]) }}">Edit Profile</a>
                                         <form action="{{ route('user.destroy', ["user" => $user->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <input class="btn btn-block btn-outline-danger btn-sm" type="submit" value="Delete">
+                                            <input class="btn btn-block btn-outline-danger btn-sm" type="submit"
+                                                   value="Delete">
                                         </form>
                                     </div>
                                 </div>

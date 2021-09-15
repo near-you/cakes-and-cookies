@@ -47,12 +47,14 @@ class ShopController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return Application|Factory|View
      */
-    /*public function show(int $id): Response
+    public function show(int $id)
     {
-        //
-    }*/
+        return view('admin.shop.show', [
+            "shop" => Shop::query()->find($id)
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.

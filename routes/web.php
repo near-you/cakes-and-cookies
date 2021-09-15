@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('manager')->group(function () {
         Route::get('/', [ManagerController::class, 'index'])->name('manager');
-        Route::resource('/shop', ShopController::class);
+        Route::resource('/user_shop', ShopController::class);
     });
 
 });

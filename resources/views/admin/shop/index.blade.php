@@ -2,17 +2,36 @@
 
 @section('content')
 
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-    <br>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-4">
+                    <h1>Shops</h1>
+                </div>
+
+                <div class="col-sm-4">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="col-sm-4">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Shops</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">List of all categories</h3>
+                    <h3 class="card-title">List of all Shops</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -41,17 +60,21 @@
                                     @foreach($shops as $shop)
                                         <tr role="row">
                                             <td>{{ $shop->id }}</td>
-                                            <td>{{ $shop->name }}</td>
+                                            <td>
+                                                <a href="{{ route('shop.show', ["shop" => $shop->id]) }}">{{ $shop->name }}</a>
+                                            </td>
                                             <td>{{ $shop->created_at }}</td>
                                             <td>
                                                 <a class="btn btn-block btn-info btn-sm"
                                                    href="{{ route('shop.edit', ["shop" => $shop->id]) }}">Edit</a>
                                             <!--<a class="btn btn-block btn-danger btn-sm"
                                                href="{{ route('shop.destroy', ["shop" => $shop->id]) }}">Delete</a>-->
-                                                <form action="{{ route('shop.destroy', ["shop" => $shop->id]) }}" method="POST">
+                                                <form action="{{ route('shop.destroy', ["shop" => $shop->id]) }}"
+                                                      method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input class="btn btn-block btn-danger btn-sm" type="submit" value="Delete">
+                                                    <input class="btn btn-block btn-danger btn-sm" type="submit"
+                                                           value="Delete">
                                                 </form>
                                             </td>
                                         </tr>

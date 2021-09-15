@@ -109,10 +109,10 @@ class User extends Authenticatable
         User::destroy($id);
     }
 
-    public static function redirectView($id)
+    public static function redirectView(int $id, string $str): \Illuminate\Http\RedirectResponse
     {
-        redirect()->route('user.index')->with(
+        return redirect()->route('user.index')->with(
             'status',
-            'User #' . $id. ' was deleted!');
+            'User #' . $id. ' was' . $str);
     }
 }

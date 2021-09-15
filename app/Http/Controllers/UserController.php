@@ -6,9 +6,6 @@ use App\Http\Requests\UserAddRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\Shop;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -71,14 +68,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserEditRequest $request, int $id)
+    public function update(UserEditRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
-        User::updateUser($id, $request);
-        $name = User::find($id)->name;
-        return redirect()->route('user.index')->with(
-            'status',
-            'User ' . $name . ' was updated!'
-        );
+        $user = User::updateUser($id, $request);
+        dd($user);
+        //return User::redirectView($id, 'updated');
     }
 
     /**
@@ -86,11 +80,7 @@ class UserController extends Controller
      */
     public function destroy(int $id): \Illuminate\Http\RedirectResponse
     {
-        $name = User::find($id)->name;
         User::userDestroy($id);
-
-        return redirect()->route('user.index')->with(
-            'status',
-            'User ' . $name . ' was deleted!');
+        return User::redirectView($id, 'deleted');
     }
 }

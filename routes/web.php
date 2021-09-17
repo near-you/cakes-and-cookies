@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin');
             Route::resource('/user', UserController::class);
             Route::resource('/shop', ShopController::class);
+            Route::resource('/product', ShopController::class);
         });
     });
 

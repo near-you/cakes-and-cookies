@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -51,7 +52,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function shop()
+    public static function imgName($files): string
+    {
+       return Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
+    }
+
+    public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
     }
@@ -61,7 +67,7 @@ class User extends Authenticatable
         $data = $request->all();
 
         if ($files = $request->file('img')) {
-            $imgName = Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
+            $imgName = User::imgName($files);
             $data['img']->move(Storage::path('public/user_img/') . 'origin/', $imgName);
             $thumbnail = Image::make(Storage::path('public/user_img/') . 'origin/' . $imgName);
             $thumbnail->fit(128, 128);
@@ -71,15 +77,15 @@ class User extends Authenticatable
         $data['img'] = $imgName;
         $data['role'] = lcfirst($request->role);
         $data['password'] = Hash::make($request->password);
-        return User::create($data);
+        return User::query()->create($data);
     }
 
-    public static function updateUser(int $id, $request)
+    public static function updateUser(int $id, $request): int
     {
         $data = $request->except(['_token', '_method', 'password_confirmation']);
         if ($files = $request->file('img')) {
             self::imgDestroy($id);
-            $imgName = Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
+            $imgName = User::imgName($files);
             $data['img']->move(Storage::path('public/user_img/') . 'origin/', $imgName);
             $thumbnail = Image::make(Storage::path('public/user_img/') . 'origin/' . $imgName);
             $thumbnail->fit(128, 128);
@@ -87,18 +93,18 @@ class User extends Authenticatable
             $data['img'] = $imgName;
         }
 
-        return User::where('id', $id)
+        return User::query()->where('id', $id)
             ->update($data);
     }
 
     public static function imgDestroy(int $id)
     {
-        if(User::find($id)->img) {
-            if (file_exists(Storage::path('public/user_img/') . 'origin/' . User::find($id)->img)) {
-                unlink(Storage::path('public/user_img/') . 'origin/' . User::find($id)->img);
+        if(User::query()->find($id)->img) {
+            if (file_exists(Storage::path('public/user_img/') . 'origin/' . User::query()->find($id)->img)) {
+                unlink(Storage::path('public/user_img/') . 'origin/' . User::query()->find($id)->img);
             }
-            if (file_exists(Storage::path('public/user_img/') . 'thumbnail/' . User::find($id)->img)) {
-                unlink(Storage::path('public/user_img/') . 'thumbnail/' . User::find($id)->img);
+            if (file_exists(Storage::path('public/user_img/') . 'thumbnail/' . User::query()->find($id)->img)) {
+                unlink(Storage::path('public/user_img/') . 'thumbnail/' . User::query()->find($id)->img);
             }
         }
     }

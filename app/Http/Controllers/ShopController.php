@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ShopAddRequest;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,8 +17,9 @@ class ShopController extends Controller
 {
     public function index()
     {
+        $shops = Shop::query()->paginate(6);
         return view('admin.shop.index', [
-            'shops' => Shop::query()->paginate(6),
+            'shops' => $shops,
         ]);
     }
 
@@ -52,7 +54,9 @@ class ShopController extends Controller
     public function show(int $id)
     {
         return view('admin.shop.show', [
-            "shop" => Shop::query()->find($id)
+            "products" => Shop::query()->find($id)->products,
+            "users" => Shop::query()->find($id)->users,
+            'shop' => Shop::query()->find($id)
         ]);
     }
 

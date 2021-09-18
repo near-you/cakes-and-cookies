@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Manager\ManagerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin');
             Route::resource('/user', UserController::class);
             Route::resource('/shop', ShopController::class);
-            Route::resource('/product', ShopController::class);
+            Route::resource('/product', ProductController::class);
         });
     });
 

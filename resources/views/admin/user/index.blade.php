@@ -40,7 +40,7 @@
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
-                                            Address: Demo Street 123, Demo City 04312, NJ
+                                            Shop: <b> {{ $user->shop->name }} </b>
                                         </li>
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
                                             Phone #: + 800 - 12 12 23 52

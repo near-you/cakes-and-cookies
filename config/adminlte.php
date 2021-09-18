@@ -287,12 +287,12 @@ return [
                 [
                     'text' => 'View All Products',
                     'icon'    => 'fas fa-boxes',
-                    'url'  => 'admin.product',
+                    'url'  => 'admin/product',
                 ],
                 [
                     'text' => 'Add Product',
                     'icon'    => 'fas fa-user-plus',
-                    'url'  => 'admin.product.create',
+                    'url'  => 'admin/product/create',
                 ]
             ]
         ],

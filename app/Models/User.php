@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,14 +51,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function imgName($files): string
-    {
-       return Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
-    }
-
     public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public static function imgName($files): string
+    {
+        return Auth::id() . "_" . time() . "." . $files->getClientOriginalExtension();
     }
 
     public static function createUser($request)

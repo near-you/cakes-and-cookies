@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ShopAddRequest;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Shop;
-use Illuminate\Http\Response;
 
 class ShopController extends Controller
 {

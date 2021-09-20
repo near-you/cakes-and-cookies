@@ -49,7 +49,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        @foreach($users as $user)
+                        @foreach($shop->users as $user)
                             <ul class="list-inline">
 
                                 <li class="list-inline-item">
@@ -61,7 +61,7 @@
                         @endforeach
                     </td>
                     <td>
-                        @foreach($products as $product)
+                        @foreach($shop->products as $product)
                             <ul class="list-inline">
 
                                 <li class="list-inline-item">

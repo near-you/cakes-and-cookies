@@ -9,12 +9,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Config;
 
 class ShopController extends Controller
 {
     public function index()
     {
-        $shops = Shop::query()->paginate(6);
+        $shops = Shop::query()->paginate(Config::get('constants.records'));
         return view('admin.shop.index', [
             'shops' => $shops,
         ]);
@@ -51,9 +52,7 @@ class ShopController extends Controller
     public function show(int $id)
     {
         return view('admin.shop.show', [
-            "products" => Shop::query()->find($id)->products,
-            "users" => Shop::query()->find($id)->users,
-            'shop' => Shop::query()->find($id)
+            "shop" => Shop::query()->find($id)
         ]);
     }
 

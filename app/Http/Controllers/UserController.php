@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Config;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            "users" => User::query()->paginate(6)
+            "users" => User::query()->paginate(Config::get('constants.records'))
         ]);
     }
 

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UserEditRequest extends FormRequest
+class ProductEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +25,9 @@ class UserEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|max:120|string",
-            "last_name" => "required|max:120|string",
-            "email" => "required|email|string",
-            "role" => "required|max:7",
-            "shop" => "required",
-            "password" => "required|min:8|confirmed|string",
-            "img" => "image|mimes:jpg,bmp,png,jpeg|max:2048|nullable"
+            "name" => "required|max:120|string|" . Rule::unique('products')->ignore($this->route('product')),
+            "description" => "max:255|string",
+            "shop_id" => "required|numeric"
         ];
     }
 }

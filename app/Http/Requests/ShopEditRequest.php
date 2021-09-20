@@ -12,7 +12,7 @@ class ShopEditRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,10 +22,10 @@ class ShopEditRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'title' => 'required|max:120|string|' . Rule::unique('shops')->ignore($this->route('shop')),
+            "name" => "required|max:120|string|" . Rule::unique('shops')->ignore($this->route('shop')),
         ];
     }
 }

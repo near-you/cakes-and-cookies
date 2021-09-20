@@ -11,7 +11,7 @@ class ShopAddRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,10 +21,10 @@ class ShopAddRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required|max:120|string'
+            "name" => "required|max:120|string"
         ];
     }
 }

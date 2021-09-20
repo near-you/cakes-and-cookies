@@ -24,8 +24,9 @@ class ProductAddRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "requires|string|max:120",
-            "description" => "requires|string|max:255"
+            "name" => "required|max:120|string",
+            "description" => "required|max:255|string|unique:products, name",
+            "shop" => "required"
         ];
     }
 }

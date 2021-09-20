@@ -86,7 +86,6 @@
         </div>
     </div>
 
-
     <!-- /.card-body -->
     <div class="card-footer">
         <div class="pagination justify-content-center m-0">

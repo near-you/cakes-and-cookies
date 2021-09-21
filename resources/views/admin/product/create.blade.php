@@ -31,8 +31,8 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputProductTitle">Product Title</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" id="exampleInputProductTitle" placeholder="Enter title">
+                            <label for="exampleInputProductName">Product Title</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" id="exampleInputProductName" placeholder="Enter title">
                             @error('name')
                             <br>
                             <span class="invalid-feedback" role="alert">

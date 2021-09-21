@@ -25,8 +25,8 @@ class ProductAddRequest extends FormRequest
     {
         return [
             "name" => "required|max:120|string",
-            "description" => "required|max:255|string|unique:products, name",
-            "shop" => "required"
+            "description" => "required|max:255|string|unique:products,name",
+            "shop_id" => "required"
         ];
     }
 }

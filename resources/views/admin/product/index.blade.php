@@ -1,9 +1,5 @@
 @extends('adminlte::page')
 
-@section('css')
-{{--    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">--}}
-@stop
-
 @section('content')
     <div class="content-header">
         <div class="container-fluid">

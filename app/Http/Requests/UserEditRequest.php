@@ -28,7 +28,7 @@ class UserEditRequest extends FormRequest
             "last_name" => "required|max:120|string",
             "email" => "required|email|string",
             "role" => "required|max:7",
-            "shop" => "required",
+            "shop_id" => "required",
             "password" => "required|min:8|confirmed|string",
             "img" => "image|mimes:jpg,bmp,png,jpeg|max:2048|nullable"
         ];

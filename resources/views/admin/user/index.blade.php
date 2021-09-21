@@ -17,7 +17,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                        <li class="breadcrumb-item active">All Users/li>
+                        <li class="breadcrumb-item active">All Users</li>
                     </ol>
                 </div>
             </div>
@@ -38,10 +38,12 @@
                                     <h2 class="lead"><b>{{ $user->name }} {{ $user->last_name }}</b></h2>
                                     <p class="text-muted text-sm"><b>E-mail </b> {{ $user->email }}</p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        @if($user->role != 'admin')
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
-                                            Shop: <b> {{ $user->shop->name }} </b>
+                                            Shop: <b>{{ $user->shop->name }}  </b>
                                         </li>
+                                        @endif
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
                                             Phone #: + 800 - 12 12 23 52
                                         </li>

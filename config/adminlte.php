@@ -247,23 +247,6 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'    => 'Managers',
-            'icon'    => 'fas fa-user-cog',
-            'can'    => 'admin',
-            'submenu' => [
-                [
-                    'text' => 'View All Managers',
-                    'icon'    => 'fas fa-users',
-                    'url'  => 'admin/user',
-                ],
-                [
-                    'text' => 'Add Manager',
-                    'icon'    => 'fas fa-user-plus',
-                    'url'  => 'admin/user/create',
-                ]
-            ]
-        ],
-        [
             'text'    => 'Shops',
             'icon'    => 'fas fa-user-cog',
             'can'    => 'admin',
@@ -293,6 +276,23 @@ return [
                     'text' => 'Add Product',
                     'icon'    => 'fas fa-user-plus',
                     'url'  => 'admin/product/create',
+                ]
+            ]
+        ],
+        [
+            'text'    => 'Managers',
+            'icon'    => 'fas fa-user-cog',
+            'can'    => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'View All Managers',
+                    'icon'    => 'fas fa-users',
+                    'url'  => 'admin/user',
+                ],
+                [
+                    'text' => 'Add Manager',
+                    'icon'    => 'fas fa-user-plus',
+                    'url'  => 'admin/user/create',
                 ]
             ]
         ],

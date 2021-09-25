@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ManagerController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        return view('manager.index', [
-            "products" => Product::all()
+        return view('admin.index', [
+            "users" => User::all()
         ]);
     }
 
@@ -25,7 +25,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**

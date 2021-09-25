@@ -17,7 +17,7 @@ class Product extends Model
             'shop_id'
         ];
 
-    public function shop()
+    public function shop(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Shop::class);
     }

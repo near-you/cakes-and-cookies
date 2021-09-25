@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Shop extends Model
 {
@@ -15,8 +16,21 @@ class Shop extends Model
         'name'
     ];
 
-    public function products()
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+
+
+    public static function updateData(int $id, string $name): int
+    {
+        return Shop::query()->where('id', $id)
+            ->update(['name' => $name]);
+    }
+
 }

@@ -17,7 +17,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Contacts</li>
+                        <li class="breadcrumb-item active">All Users</li>
                     </ol>
                 </div>
             </div>
@@ -38,10 +38,12 @@
                                     <h2 class="lead"><b>{{ $user->name }} {{ $user->last_name }}</b></h2>
                                     <p class="text-muted text-sm"><b>E-mail </b> {{ $user->email }}</p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        @if($user->role != 'admin')
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
-                                            Address: Demo Street 123, Demo City 04312, NJ
+                                            Shop: <b>{{ $user->shop->name }}  </b>
                                         </li>
+                                        @endif
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
                                             Phone #: + 800 - 12 12 23 52
                                         </li>
@@ -59,20 +61,22 @@
                                 <a href="#" class="btn btn-sm bg-teal">
                                     <i class="fas fa-comments"></i>
                                 </a>
-                                <a href="{{ route('user.show', ["user" => $user->id]) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('user.show', ["user" => $user->id]) }}"
+                                   class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                                 <div class="btn-group">
-                                    {{--<div class="btn-sm  btn-info">Action</div>--}}
-                                    <button type="button" class="btn btn-info btn-sm  dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">Action
-{{--                                        <span class="sr-only">Toggle Dropdown</span>--}}
+                                    <button type="button" class="btn btn-info btn-sm  dropdown-toggle dropdown-icon"
+                                            data-toggle="dropdown" aria-expanded="false">Action
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                        <a class="btn btn-block btn-sm" href="{{ route('user.edit', ["user" => $user->id]) }}">Edit Profile</a>
+                                        <a class="btn btn-block btn-sm"
+                                           href="{{ route('user.edit', ["user" => $user->id]) }}">Edit Profile</a>
                                         <form action="{{ route('user.destroy', ["user" => $user->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <input class="btn btn-block btn-outline-danger btn-sm" type="submit" value="Delete">
+                                            <input class="btn btn-block btn-outline-danger btn-sm" type="submit"
+                                                   value="Delete">
                                         </form>
                                     </div>
                                 </div>
@@ -83,7 +87,6 @@
             @endforeach
         </div>
     </div>
-
 
     <!-- /.card-body -->
     <div class="card-footer">

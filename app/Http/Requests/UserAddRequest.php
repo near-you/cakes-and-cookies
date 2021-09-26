@@ -24,11 +24,13 @@ class UserAddRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:120|string',
-            'last_name' => 'required|max:120|string',
-            'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-            'img' => 'image|mimes:jpg,bmp,png,jpeg|max:20480|nullable'
+            "name" => "required|max:120|string",
+            "last_name" => "required|max:120|string",
+            "email" => "required|email|unique:users,email|string",
+            "password" => "required|min:8|confirmed|string",
+            "role" => "required",
+            "shop_id" => "required|nullable",
+            "img" => "image|mimes:jpg,bmp,png,jpeg|max:2048|nullable"
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -17,8 +18,15 @@ class Product extends Model
             'shop_id'
         ];
 
-    public function shop(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public static function updateProductData($request, $id): int
+    {
+        $data = $request->except(['_token', '_method']);
+        return self::query()->where('id', $id)
+            ->update($data);
     }
 }

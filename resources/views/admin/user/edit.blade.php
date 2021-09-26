@@ -93,9 +93,7 @@
 
                         <!-- Role -->
                         <div class="form-group">
-                            <label for="exampleInputQuantity">Role</label>
-                            {{--<input type="number" min="1" class="form-control @error('quantity') is-invalid @enderror"
-                                   value="{{ old('quantity') ?? $product->quantity }}" name="quantity" id="exampleInputQuantity" placeholder="Enter Quantity">--}}
+                            <label for="exampleInputRole">Role</label>
                             <select name="role" id="exampleInputRole"
                                     class="form-control @error('role') is-invalid @enderror">
                                 <option>Please select role</option>

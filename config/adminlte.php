@@ -247,6 +247,39 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'    => 'Shops',
+            'icon'    => 'fas fa-user-cog',
+            'can'    => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'View All Shops',
+                    'icon'    => 'fas fa-store',
+                    'url'  => 'admin/shop',
+                ],
+                [
+                    'text' => 'Add Shop',
+                    'icon'    => 'fas fa-plus-square',
+                    'url'  => 'admin/shop/create',
+                ]
+            ]
+        ],
+        [
+            'text'    => 'Products',
+            'icon'    => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'View All Products',
+                    'icon'    => 'fas fa-boxes',
+                    'url'  => 'admin/product',
+                ],
+                [
+                    'text' => 'Add Product',
+                    'icon'    => 'fas fa-user-plus',
+                    'url'  => 'admin/product/create',
+                ]
+            ]
+        ],
+        [
             'text'    => 'Managers',
             'icon'    => 'fas fa-user-cog',
             'can'    => 'admin',
@@ -260,39 +293,6 @@ return [
                     'text' => 'Add Manager',
                     'icon'    => 'fas fa-user-plus',
                     'url'  => 'admin/user/create',
-                ]
-            ]
-        ],
-        [
-            'text'    => 'Shops',
-            'icon'    => 'fas fa-user-cog',
-            'can'    => 'admin',
-            'submenu' => [
-                [
-                    'text' => 'View All Shops',
-                    'icon'    => 'fas fa-store',
-                    'url'  => 'admin/shop',
-                ],
-                [
-                    'text' => 'Add Shop',
-                    'icon'    => 'fas fa-plus-square',
-                    'url'  => '#',
-                ]
-            ]
-        ],
-        [
-            'text'    => 'Products',
-            'icon'    => 'fab fa-product-hunt',
-            'submenu' => [
-                [
-                    'text' => 'View All Products',
-                    'icon'    => 'fas fa-boxes',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Add Product',
-                    'icon'    => 'fas fa-user-plus',
-                    'url'  => '#',
                 ]
             ]
         ],

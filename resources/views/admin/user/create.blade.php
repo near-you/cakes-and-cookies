@@ -115,7 +115,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputCategory">Role</label>
                                     <select name="role" id="exampleInputCategory" class="form-control @error('role') is-invalid @enderror">
-                                        <option>Please select role</option>
+                                        <option value="Manager">Please select role</option>
                                             <option name="role">Admin</option>
                                             <option name="role">Manager</option>
                                     </select>

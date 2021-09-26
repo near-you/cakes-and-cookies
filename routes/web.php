@@ -36,7 +36,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('manager')->group(function () {
         Route::get('/', [ManagerController::class, 'index'])->name('manager');
-        Route::resource('/user_shop', ShopController::class);
+        Route::prefix('product')->group(function () {
+            Route::get('/', [App\Http\Controllers\Manager\ProductController::class, 'index'])->name('user_product');
+            Route::get('/all_products', [App\Http\Controllers\Manager\ProductController::class, 'allProducts'])->name('all_products');
+        });
     });
 
 });

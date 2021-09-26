@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('admin.index', [
-            "users" => User::all()
+            "users" => Order::all()
         ]);
     }
 

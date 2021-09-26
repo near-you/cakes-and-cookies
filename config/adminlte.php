@@ -227,12 +227,12 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
+            'type' => 'navbar-search',
+            'text' => 'search',
             'topnav_right' => true,
         ],
         [
-            'type'         => 'fullscreen-widget',
+            'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
@@ -243,76 +243,113 @@ return [
         ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
+        // Admin Sections
         [
-            'text'    => 'Shops',
-            'icon'    => 'fas fa-user-cog',
-            'can'    => 'admin',
+            'text' => 'Shops',
+            'icon' => 'fas fa-user-cog',
+            'can' => 'admin',
             'submenu' => [
                 [
                     'text' => 'View All Shops',
-                    'icon'    => 'fas fa-store',
-                    'url'  => 'admin/shop',
+                    'icon' => 'fas fa-store',
+                    'url' => 'admin/shop',
                 ],
                 [
                     'text' => 'Add Shop',
-                    'icon'    => 'fas fa-plus-square',
-                    'url'  => 'admin/shop/create',
+                    'icon' => 'fas fa-plus-square',
+                    'url' => 'admin/shop/create',
                 ]
             ]
         ],
         [
-            'text'    => 'Products',
-            'icon'    => 'fab fa-product-hunt',
+            'text' => 'Products',
+            'icon' => 'fab fa-product-hunt',
+            'can' => 'admin',
             'submenu' => [
                 [
                     'text' => 'View All Products',
-                    'icon'    => 'fas fa-boxes',
-                    'url'  => 'admin/product',
+                    'icon' => 'fas fa-boxes',
+                    'url' => 'admin/product',
                 ],
                 [
                     'text' => 'Add Product',
-                    'icon'    => 'fas fa-user-plus',
-                    'url'  => 'admin/product/create',
+                    'icon' => 'fas fa-user-plus',
+                    'url' => 'admin/product/create',
                 ]
             ]
         ],
         [
-            'text'    => 'Managers',
-            'icon'    => 'fas fa-user-cog',
-            'can'    => 'admin',
+            'text' => 'Managers',
+            'icon' => 'fas fa-user-cog',
+            'can' => 'admin',
             'submenu' => [
                 [
                     'text' => 'View All Managers',
-                    'icon'    => 'fas fa-users',
-                    'url'  => 'admin/user',
+                    'icon' => 'fas fa-users',
+                    'url' => 'admin/user',
                 ],
                 [
                     'text' => 'Add Manager',
-                    'icon'    => 'fas fa-user-plus',
-                    'url'  => 'admin/user/create',
+                    'icon' => 'fas fa-user-plus',
+                    'url' => 'admin/user/create',
                 ]
             ]
         ],
         [
-            'text'    => 'Orders',
-            'icon'    => 'fas fa-user-cog',
+            'text' => 'Orders',
+            'icon' => 'fas fa-user-cog',
+            'can' => 'admin',
             'submenu' => [
                 [
                     'text' => 'View All Orders',
-                    'icon'    => 'fas fa-users',
-                    'url'  => '#',
+                    'icon' => 'fas fa-users',
+                    'url' => '#',
                 ],
                 [
                     'text' => 'Add Order',
-                    'icon'    => 'fas fa-user-plus',
-                    'url'  => '#',
+                    'icon' => 'fas fa-user-plus',
+                    'url' => '#',
                 ]
             ]
         ],
 
+        // Users Sections
+        [
+            'text' => 'My Shop Products',
+            'icon' => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'View All My Shop Products',
+                    'icon' => 'fas fa-boxes',
+                    'url' => 'manager/product',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Products To Order',
+            'icon' => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'View All Products',
+                    'icon' => 'fas fa-boxes',
+                    'url' => 'manager/product/all_products',
+                ],
+            ]
+        ],
+        [
+            'text' => 'My Orders',
+            'icon' => 'fas fa-user-cog',
+            'submenu' => [
+                [
+                    'text' => 'View All My Orders',
+                    'icon' => 'fas fa-users',
+                    'url' => '#',
+                ],
+            ]
+        ],
     ],
 
     /*

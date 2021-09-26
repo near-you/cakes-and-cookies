@@ -16,12 +16,12 @@ class Shop extends Model
         'name'
     ];
 
-    public function products(): HasMany
+    public function product(): HasMany
     {
         return $this->hasMany(Product::class);
     }
 
-    public function users(): HasMany
+    public function user(): HasMany
     {
         return $this->hasMany(User::class);
     }

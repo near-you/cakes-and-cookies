@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Order;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,19 +16,19 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin.index', [
-            "users" => Order::all()
+        return view('admin.order.index', [
+            "orders" => Order::all()
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.order.create');
     }
 
     /**

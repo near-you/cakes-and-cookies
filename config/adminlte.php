@@ -306,7 +306,7 @@ return [
                 [
                     'text' => 'View All Orders',
                     'icon' => 'fas fa-users',
-                    'url' => '#',
+                    'url' => 'admin/order',
                 ],
                 [
                     'text' => 'Add Order',
@@ -320,6 +320,7 @@ return [
         [
             'text' => 'My Shop Products',
             'icon' => 'fab fa-product-hunt',
+            'can' => 'manager',
             'submenu' => [
                 [
                     'text' => 'View All My Shop Products',
@@ -331,6 +332,7 @@ return [
         [
             'text' => 'Products To Order',
             'icon' => 'fab fa-product-hunt',
+            'can' => 'manager',
             'submenu' => [
                 [
                     'text' => 'View All Products',
@@ -342,6 +344,7 @@ return [
         [
             'text' => 'My Orders',
             'icon' => 'fas fa-user-cog',
+            'can' => 'manager',
             'submenu' => [
                 [
                     'text' => 'View All My Orders',
